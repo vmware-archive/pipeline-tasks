@@ -24,6 +24,7 @@ EOF
 [ -n "$CF_APP_MEMORY" ]    && echo "  memory: $CF_APP_MEMORY"  >> manifest.yml
 [ -n "$CF_APP_INSTANCES" ] && echo "  instances: $CF_APP_INSTANCES"  >> manifest.yml
 [ -n "$CF_APP_TIMEOUT" ]   && echo "  timeout: $CF_APP_TIMEOUT"  >> manifest.yml
+# note: should be passed in as an array: [service1,service2,etc]
 [ -n "$CF_APP_SERVICES" ]  && echo "  services: $CF_APP_SERVICES"  >> manifest.yml
 # note: concourse passes this as a json object, which is cool
 [ -n "$CF_APP_ENV_VARS" ]  && echo "  env: $CF_APP_ENV_VARS"  >> manifest.yml
