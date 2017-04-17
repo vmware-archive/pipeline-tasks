@@ -1,0 +1,17 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: concourse/git-resource
+
+inputs:
+- name: pipeline-tasks
+- name: version
+
+outputs:
+- name: task-output
+
+run:
+  path: pipeline-tasks/generate-github-release/task.sh
