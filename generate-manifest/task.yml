@@ -8,13 +8,12 @@ image_resource:
     tag: '1.26'
 
 params:
-  CF_API_URL:
   CF_APP_NAME:
   CF_APP_HOST:
-  CF_APP_SERVICES:
   CF_APP_MEMORY:
   CF_APP_INSTANCES:
   CF_APP_TIMEOUT:
+  CF_APP_SERVICES:
   # Example:
   # CF_APP_ENV_VARS:
   #   JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
