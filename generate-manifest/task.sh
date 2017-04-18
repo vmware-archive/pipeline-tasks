@@ -6,12 +6,12 @@ set -eu
 set -o pipefail
 
 # copy the artifact to the task-output folder
-cp artifact/$ARTIFACT_GLOB task-output/.
+cp artifact/$CF_APP_PATH task-output/.
 
 cd task-output
 
 # convert 'artifact-*.jar' into 'artifact-1.0.0-rc.1.jar'
-appPath=$(ls $ARTIFACT_GLOB)
+appPath=$(ls $CF_APP_PATH)
 
 cat <<EOF >manifest.yml
 ---

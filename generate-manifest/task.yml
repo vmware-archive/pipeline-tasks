@@ -10,6 +10,7 @@ image_resource:
 params:
   CF_APP_NAME:
   CF_APP_HOST:
+  CF_APP_PATH:
   CF_APP_MEMORY:
   CF_APP_INSTANCES:
   CF_APP_TIMEOUT:
@@ -19,7 +20,6 @@ params:
   #   JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
   #   TRUST_CERTS: api.run.pivotal.io
   CF_APP_ENV_VARS:
-  ARTIFACT_GLOB:
 
 inputs:
 - name: pipeline-tasks
