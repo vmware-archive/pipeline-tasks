@@ -1,0 +1,24 @@
+# Builds a maven project and copies the artifact to the task-output folder
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: openjdk
+    tag: '8-jdk-alpine'
+
+params:
+  MAVEN_OPTS:
+  MAVEN_CONFIG:
+  MAVEN_PROJECTS:
+  MAVEN_REPO_MIRROR:
+  MAVEN_REPO_USERNAME:
+  MAVEN_REPO_PASSWORD:
+
+inputs:
+- name: pipeline-tasks
+- name: project
+
+run:
+  path: pipeline-tasks/run-maven-itests/task.sh
