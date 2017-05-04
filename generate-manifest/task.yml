@@ -4,26 +4,36 @@ platform: linux
 image_resource:
   type: docker-image
   source:
-    repository: busybox
-    tag: '1.26'
+    repository: patrickcrocker/cf-cli-resource
+    tag: 'latest'
 
 params:
-  CF_APP_NAME:
-  CF_APP_HOST:
-  CF_APP_PATH:
-  CF_APP_MEMORY:
-  CF_APP_INSTANCES:
-  CF_APP_TIMEOUT:
-  CF_APP_SERVICES:
-  # Example:
-  # CF_APP_ENV_VARS:
-  #   JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
-  #   TRUST_CERTS: api.run.pivotal.io
-  CF_APP_ENV_VARS:
+  # all examples use in-line yaml syntax for sequences and maps, but you can
+  # use the normal syntax as well
+  MF_NAME: #my-app
+  MF_BUILDPACK: #https://github.com/cloudfoundry/java-buildpack.git#v3.3.0
+  MF_COMMAND: #bundle exec rake VERBOSE=true
+  MF_DISK_QUOTA: #1024M
+  MF_DOMAIN: #unique-example.com
+  MF_DOMAINS: #[ domain-example1.com, domain-example2.org ]
+  MF_HEALTH_CHECK_HTTP_ENDPOINT: #/health
+  MF_HEALTH_CHECK_TYPE: #http
+  MF_HOST: #my-app
+  MF_HOSTS: #[ app_host1, app_host2 ]
+  MF_INSTANCES: #2
+  MF_MEMORY: #1024M
+  MF_NO_HOSTNAME: #true
+  MF_NO_ROUTE: #true
+  MF_PATH: #/path/to/application/bits
+  MF_RANDOM_ROUTE: #true
+  MF_ROUTES: #[ { route: example.com }, { route: www.example.com/foo }, { route: 'tcp-example.com:1234' } ]
+  MF_STACK: #cflinuxfs2
+  MF_TIMEOUT: #80
+  MF_ENV: # { RAILS_ENV: production, RACK_ENV: production, JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 1.8.0_+ }, memory_calculator: { stack_threads: 200 } }' }
+  MF_SERVICES: #[ instance_ABC, instance_XYZ ]
 
 inputs:
 - name: pipeline-tasks
-- name: artifact
 
 outputs:
 - name: task-output
