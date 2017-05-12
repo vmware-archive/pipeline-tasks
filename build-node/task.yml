@@ -1,0 +1,16 @@
+# Builds a npm project and copies build to the task-output folder
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: patrickcrocker/node
+    tag: '1.0.0-rc.1'
+
+inputs:
+- name: pipeline-tasks
+- name: project
+
+run:
+  path: pipeline-tasks/build-node/task.sh
