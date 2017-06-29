@@ -20,9 +20,13 @@ params:
 inputs:
 - name: pipeline-tasks
 - name: project
+- name: version
 
 caches:
 - path: project/.m2repository
 
+outputs:
+- name: task-output
+
 run:
-  path: pipeline-tasks/run-maven-itests/task.sh
+  path: pipeline-tasks/build-maven-semver-cache/task.sh
