@@ -15,10 +15,14 @@ params:
   MAVEN_REPO_MIRROR:
   MAVEN_REPO_USERNAME:
   MAVEN_REPO_PASSWORD:
+  MAVEN_REPO_CACHE_ENABLE: false # set this to true in your pipeline to cache your repo on the worker
 
 inputs:
 - name: pipeline-tasks
 - name: project
+
+caches:
+- path: project/.m2repository
 
 run:
   path: pipeline-tasks/run-maven-itests/task.sh
