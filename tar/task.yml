@@ -20,4 +20,4 @@ outputs:
 - name: task-output
 
 run:
-  path: pipeline-tasks/tasks/tar/task.sh
+  path: pipeline-tasks/tar/task.sh
