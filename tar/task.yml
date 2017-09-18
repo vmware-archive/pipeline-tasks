@@ -1,0 +1,23 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: busybox
+    tag: '1.27'
+
+params:
+  TAR_MODE: # compress, decompress
+  TAR_FILE: # some-file-*.tar.gz
+  TAR_COMPRESSION: # gzip, xz, bzip2, lzma, none, auto or leave empty for auto-detect by file extension
+
+inputs:
+- name: pipeline-tasks
+- name: task-input
+
+outputs:
+- name: task-output
+
+run:
+  path: pipeline-tasks/tasks/tar/task.sh

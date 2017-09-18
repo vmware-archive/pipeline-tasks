@@ -1,0 +1,67 @@
+# Builds an angular-cli project and copies the dist folder contents to the task-output folder
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: pivotalpa/angular-cli
+    tag: '1.4.2-rc.3'
+
+params:
+  # ng test
+  NG_TEST_CODE_COVERAGE:
+  NG_TEST_CONFIG:
+  NG_TEST_SINGLE_RUN:
+  NG_TEST_PROGRESS:
+  NG_TEST_BROWSERS:
+  NG_TEST_COLORS:
+  NG_TEST_LOG_LEVEL:
+  NG_TEST_PORT:
+  NG_TEST_REPORTERS:
+  NG_TEST_SOURCEMAPS:
+  NG_TEST_POLL:
+  NG_TEST_ENVIRONMENT:
+  NG_TEST_APP:
+  # ng build
+  NG_BUILD_TARGET:
+  NG_BUILD_ENVIRONMENT:
+  NG_BUILD_OUTPUT_PATH:
+  NG_BUILD_AOT:
+  NG_BUILD_SOURCEMAPS:
+  NG_BUILD_VENDOR_CHUNK:
+  NG_BUILD_COMMON_CHUNK:
+  NG_BUILD_BASE_HREF:
+  NG_BUILD_DEPLOY_URL:
+  NG_BUILD_VERBOSE:
+  NG_BUILD_PROGRESS:
+  NG_BUILD_I18N_FILE:
+  NG_BUILD_I18N_FORMAT:
+  NG_BUILD_LOCALE:
+  NG_BUILD_MISSING_TRANSLATION:
+  NG_BUILD_EXTRACT_CSS:
+  NG_BUILD_WATCH:
+  NG_BUILD_OUTPUT_HASHING:
+  NG_BUILD_POLL:
+  NG_BUILD_APP:
+  NG_BUILD_DELETE_OUTPUT_PATH:
+  NG_BUILD_PRESERVE_SYMLINKS:
+  NG_BUILD_EXTRACT_LICENSES:
+  NG_BUILD_SHOW_CIRCULAR_DEPENDENCIES:
+  NG_BUILD_BUILD_OPTIMIZER:
+  NG_BUILD_NAMED_CHUNKS:
+  NG_BUILD_STATS_JSON:
+
+inputs:
+- name: pipeline-tasks
+- name: project
+- name: version
+
+caches:
+- path: project/node_modules
+
+outputs:
+- name: task-output
+
+run:
+  path: pipeline-tasks/tasks/build-ng-semver-cache/task.sh
