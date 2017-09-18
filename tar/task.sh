@@ -3,6 +3,7 @@
 set -e
 
 echo "TAR_MODE=$TAR_MODE"
+echo "TAR_DIR=$TAR_DIR"
 echo "TAR_FILE=$TAR_FILE"
 echo "TAR_COMPRESSION=$TAR_COMPRESSION"
 
@@ -32,7 +33,7 @@ fi
 echo "TAR_FLAG=$TAR_FLAG"
 
 if [ "$TAR_MODE" = "compress" ]; then
-  tar -C task-input -c${TAR_FLAG}vf task-output/$TAR_FILE .
+  tar -C task-input/$TAR_DIR -c${TAR_FLAG}vf task-output/$TAR_FILE .
 elif [ "$TAR_MODE" = "decompress" ]; then
   tar -x${TAR_FLAG}vf task-input/$TAR_FILE -C task-output
 else
