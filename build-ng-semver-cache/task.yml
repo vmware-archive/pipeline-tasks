@@ -64,4 +64,4 @@ outputs:
 - name: task-output
 
 run:
-  path: pipeline-tasks/tasks/build-ng-semver-cache/task.sh
+  path: pipeline-tasks/build-ng-semver-cache/task.sh
