@@ -3,7 +3,7 @@
 set -eu
 set -o pipefail
 
-cd proeject
+cd project
 
 ./gradlew build
 
