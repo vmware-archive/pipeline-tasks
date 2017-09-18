@@ -9,7 +9,7 @@ image_resource:
 
 params:
   TAR_MODE: # compress, decompress
-  TAR_DIR:
+  TAR_DIR: # the folder contents to add to the tar file 
   TAR_FILE: # some-file-*.tar.gz
   TAR_COMPRESSION: # gzip, xz, bzip2, lzma, none, auto or leave empty for auto-detect by file extension
 
