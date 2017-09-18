@@ -6,7 +6,7 @@ image_resource:
   type: docker-image
   source:
     repository: pivotalpa/angular-cli
-    tag: '1.4.2-rc.3'
+    tag: '1.4.2'
 
 params:
   # ng test
