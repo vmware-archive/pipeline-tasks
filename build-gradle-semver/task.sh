@@ -9,4 +9,4 @@ cd project
 
 cd ..
 
-cp project/build/libs/*.jar task-output/.
+cp -R project/build task-output/.
