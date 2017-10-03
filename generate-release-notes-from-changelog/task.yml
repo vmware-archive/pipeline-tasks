@@ -1,0 +1,24 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: concourse/git-resource
+
+params:
+  CHANGELOG_FILE: CHANGELOG.md
+  VERSION_FILE: version
+  RELEASE_NOTES_FILE: RELEASE_NOTES.md
+  DEBUG: false
+
+inputs:
+- name: pipeline-tasks
+- name: task-input
+- name: version
+
+outputs:
+- name: task-output
+
+run:
+  path: pipeline-tasks/generate-release-notes-from-changelog/task.sh
