@@ -1,0 +1,32 @@
+# Runs a list of specified commands through the ./mvnw wrapper.
+# Makes the output of the entire project/* available as output.
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: openjdk
+    tag: '8-jdk-alpine'
+
+params:
+  MAVEN_OPTS: ''
+  MAVEN_CONFIG: ''
+  MAVEN_PROJECTS: ''
+  MAVEN_REPO_MIRROR: ''
+  MAVEN_REPO_USERNAME: ''
+  MAVEN_REPO_PASSWORD: ''
+  COMMANDS: '' # 'clean test surefire-report:report -DsomeProp="foo" -DsomeOtherProp=((some.param))'
+  DEBUG: false
+  VERSION_FILE: version 
+  
+inputs:
+- name: pipeline-tasks
+- name: project
+- name: version
+
+outputs:
+- name: task-output
+
+run:
+  path: pipeline-tasks/generic-maven-wrapper-semver/task.sh
