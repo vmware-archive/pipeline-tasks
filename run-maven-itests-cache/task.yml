@@ -25,4 +25,4 @@ caches:
 - path: project/.m2repository
 
 run:
-  path: pipeline-tasks/run-maven-itests/task.sh
+  path: pipeline-tasks/run-maven-itests-cache/task.sh
