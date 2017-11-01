@@ -7,23 +7,29 @@ image_resource:
   type: docker-image
   source:
     repository: openjdk
-    tag: '8-jdk-alpine'
+    tag: '8-jdk'
 
 params:
-  MAVEN_OPTS: ''
-  MAVEN_CONFIG: ''
-  MAVEN_PROJECTS: ''
-  MAVEN_REPO_MIRROR: ''
-  MAVEN_REPO_USERNAME: ''
-  MAVEN_REPO_PASSWORD: ''
-  COMMANDS: '' # 'clean test surefire-report:report -DsomeProp="foo" -DsomeOtherProp=((some.param))'
+  MAVEN_OPTS:
+  MAVEN_CONFIG:
+  MAVEN_PROJECTS:
+  MAVEN_REPO_MIRROR:
+  MAVEN_REPO_USERNAME:
+  MAVEN_REPO_PASSWORD:
+  MAVEN_REPO_CACHE_ENABLE: false # set this to true in your pipeline to cache your repo on the worker
+  COMMANDS: # 'clean test surefire-report:report -DsomeProp="foo" -DsomeOtherProp=((some.param))'
   DEBUG: false
-  VERSION_FILE: version 
+  VERSION_FILE: version
   
 inputs:
 - name: pipeline-tasks
 - name: project
 - name: version
+ 
+caches:
+ - path: project/.m2repository
+ - path: project/node
+ - path: project/node_modules
 
 outputs:
 - name: task-output
