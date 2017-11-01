@@ -7,18 +7,18 @@ image_resource:
   type: docker-image
   source:
     repository: openjdk
-    tag: '8-jdk-alpine'
+    tag: '8-jdk'
 
 params:
-  MAVEN_OPTS: ''
-  MAVEN_CONFIG: ''
-  MAVEN_PROJECTS: ''
-  MAVEN_REPO_MIRROR: ''
-  MAVEN_REPO_USERNAME: ''
-  MAVEN_REPO_PASSWORD: ''
-  COMMANDS: '' # 'clean test surefire-report:report -DsomeProp="foo" -DsomeOtherProp=((some.param))'
+  MAVEN_OPTS:
+  MAVEN_CONFIG:
+  MAVEN_PROJECTS:
+  MAVEN_REPO_MIRROR:
+  MAVEN_REPO_USERNAME:
+  MAVEN_REPO_PASSWORD:
+  COMMANDS: # 'clean test surefire-report:report -DsomeProp="foo" -DsomeOtherProp=((some.param))'
   DEBUG: false
-  VERSION_FILE: version 
+  VERSION_FILE: version
   
 inputs:
 - name: pipeline-tasks

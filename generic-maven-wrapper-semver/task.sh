@@ -1,15 +1,20 @@
-#!/bin/ash
+#!/bin/bash
 # This script assumes Maven Wrapper is used with Maven v3.5.0 or higher.
 #   see: https://maven.apache.org/maven-ci-friendly.html
 #
 # All UPPERCASE variables are provided externally from this script
 
-set -eu
+# http://tldp.org/LDP/abs/html/options.html
+set -o errexit
+set -o nounset
 set -o pipefail
 
-[ 'true' = "${DEBUG:-}" ] && set -x
+[ 'true' = "${DEBUG:-}" ] && set -o xtrace
 
-version=$(cat version/$VERSION_FILE)
+: "${COMMANDS:?Need to set COMMANDS as nonempty}"
+: "${VERSION_FILE:?Need to set VERSION_FILE as nonempty}"
+
+version=$(cat version/"$VERSION_FILE")
 
 cd project
 
@@ -19,7 +24,7 @@ args="-Drevision=$version"
 [ -n "$MAVEN_REPO_USERNAME" ] && args="$args -Drepository.username=$MAVEN_REPO_USERNAME";
 [ -n "$MAVEN_REPO_PASSWORD" ] && args="$args -Drepository.password=$MAVEN_REPO_PASSWORD"
 
-./mvnw $COMMANDS $args
+./mvnw "$COMMANDS" $args
 
 cd ..
 
