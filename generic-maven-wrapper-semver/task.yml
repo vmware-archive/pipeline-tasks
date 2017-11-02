@@ -1,5 +1,8 @@
 # Runs a list of specified commands through the ./mvnw wrapper.
 # Makes the output of the entire project/* available as output.
+#
+# Caches node & node_modules to make this compatible with
+# the frontend-maven plugin
 ---
 platform: linux
 
@@ -16,6 +19,7 @@ params:
   MAVEN_REPO_MIRROR:
   MAVEN_REPO_USERNAME:
   MAVEN_REPO_PASSWORD:
+  MAVEN_REPO_CACHE_ENABLE: false # set this to true in your pipeline to cache your repo on the worker
   COMMANDS: # 'clean test surefire-report:report -DsomeProp="foo" -DsomeOtherProp=((some.param))'
   DEBUG: false
   VERSION_FILE: version
@@ -24,6 +28,11 @@ inputs:
 - name: pipeline-tasks
 - name: project
 - name: version
+ 
+caches:
+ - path: project/.m2repository
+ - path: project/node
+ - path: project/node_modules
 
 outputs:
 - name: task-output
