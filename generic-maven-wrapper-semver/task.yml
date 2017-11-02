@@ -1,5 +1,8 @@
 # Runs a list of specified commands through the ./mvnw wrapper.
 # Makes the output of the entire project/* available as output.
+#
+# Caches node & node_modules to make this compatible with
+# the frontend-maven plugin
 ---
 platform: linux
 
