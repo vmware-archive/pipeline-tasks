@@ -96,3 +96,46 @@ This example showcases tasks commonly used with [github-release](https://github.
     params: {file: version/version}
 
 ```
+
+
+## Overriding a task's VM
+
+Imagine you want to use a task, but you want to use a different VM. For example, consider a `task.yml` that has:
+```yaml
+image_resource:
+  type: docker-image
+  source:
+    repository: patrickcrocker/node
+    tag: '1.0.0-rc.1'
+```
+
+If you need a VM with a different version of node, you can override the task's `image_resource`. In your pipeline, you'll need a `docker-image` resource pointing to the VM you'd like the task to use. Note: it's important that the VM you supply has the shell environment the task's `task.sh` uses. If the `task.sh` has an interrobang of `#!/bin/bash`, the VM you supply _must_ have `bash` available.
+
+To override the `image_resource`, supply the task with an `image: ` resource:
+
+```yaml
+# VM we want the task to use
+resources:
+- name: vm-override
+  type: docker-image
+  source:
+    repository: mhart/alpine-node
+    tag: '8.9.1'
+
+...
+
+jobs:
+- name: build
+  plan:
+  - aggregate:
+    - get: vm-override # Make the VM available as a Job resource
+    - get: pipeline-tasks
+    - get: project
+      resource: source-repo
+      trigger: true
+    - get: version
+      params: {pre: rc}
+  - task: build-node
+    file: pipeline-tasks/build-node/task.yml
+    image: vm-override # Override the task's `image_resource` with your VM
+```
