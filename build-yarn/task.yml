@@ -1,0 +1,26 @@
+# Builds a yarn project and copies build to the task-output folder
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: mhart/alpine-node
+    tag: 'latest'
+
+params:
+  DEBUG: false
+
+inputs:
+- name: pipeline-tasks
+- name: project
+
+caches:
+- path: project/node
+- path: project/node_modules
+
+outputs:
+- name: js-assets
+
+run:
+  path: pipeline-tasks/build-yarn/task.sh
