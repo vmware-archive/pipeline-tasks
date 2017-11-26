@@ -55,7 +55,7 @@ resources:
       command: zero-downtime-push
       manifest: task-output/manifest.yml
       path: artifact/myapp-*.jar
-      current_app_name: {{cf-test-app-name}}
+      current_app_name: ((cf-test-app-name))
 ```
 
 ## Generate release information
@@ -84,8 +84,8 @@ This example showcases tasks commonly used with [github-release](https://github.
     output_mapping: {task-output: generate-commitish-output}
   - task: generate-release-notes
     file: pipeline-tasks/generate-release-notes-from-changelog/task.yml
-    input-mapping: {task-input: project}
-    output-mapping: {task-output: generate-release-notes-output}
+    input_mapping: {task-input: project}
+    output_mapping: {task-output: generate-release-notes-output}
   - put: github-release
     params:
       name: generate-github-release-output/release-name
