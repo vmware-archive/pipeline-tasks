@@ -1,4 +1,4 @@
-# Builds a maven project and copies the artifact to the task-output folder
+# Accepts arbitrary string of command(s) and copies target/* to the task-output folder
 ---
 platform: linux
 
