@@ -30,4 +30,4 @@ outputs:
 - name: task-output
 
 run:
-  path: pipeline-tasks/build-maven-generic-semver-cache/task.sh
+  path: pipeline-tasks/generic-maven-semver-cache/task.sh
