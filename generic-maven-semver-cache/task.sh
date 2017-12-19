@@ -6,12 +6,14 @@
 
 set -eu
 set -o pipefail
+[ 'true' = "${DEBUG:-}" ] && set -x
 
 version=$(cat version/version)
 
 cd project
 
 args="-Drevision=$version"
+[ 'true' = "${DEBUG:-}" ] && args="$args -X"
 [ -n "$MAVEN_PROJECTS" ] && args="$args --projects $MAVEN_PROJECTS"
 [ -n "$MAVEN_REPO_MIRROR" ] && args="$args -Drepository.url=$MAVEN_REPO_MIRROR";
 [ -n "$MAVEN_REPO_USERNAME" ] && args="$args -Drepository.username=$MAVEN_REPO_USERNAME";
@@ -22,4 +24,8 @@ args="-Drevision=$version"
 
 cd ..
 
-cp -a project/target/* task-output/.
+if [ -d project/target ]; then
+  cp -a project/target/* task-output/.
+else
+  echo "No target folder could be found. Exiting gracefully."
+fi
