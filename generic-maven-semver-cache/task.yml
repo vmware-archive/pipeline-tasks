@@ -1,0 +1,37 @@
+# Accepts an arbitrary string of maven commands 
+# and copies project/target/* to task-output.
+# If your task doesn't produce a project/target/* folder,
+# the task will still succeed & task-output will be empty.
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: openjdk
+    tag: '8-jdk-alpine'
+
+params:
+  CMD: # e.g. "test-compile failsafe:integration-test failsafe:verify"
+  MAVEN_OPTS:
+  MAVEN_CONFIG:
+  MAVEN_PROJECTS:
+  MAVEN_REPO_MIRROR:
+  MAVEN_REPO_USERNAME:
+  MAVEN_REPO_PASSWORD:
+  MAVEN_REPO_CACHE_ENABLE: false # set this to true in your pipeline to cache your repo on the worker
+  DEBUG: false # WARNING: debug may expose maven username/password credentials in the task output on Concourse
+
+inputs:
+- name: pipeline-tasks
+- name: project
+- name: version
+
+caches:
+- path: project/.m2repository
+
+outputs:
+- name: task-output
+
+run:
+  path: pipeline-tasks/generic-maven-semver-cache/task.sh
